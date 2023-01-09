@@ -21,6 +21,7 @@ class ShopItemViewModel: ViewModel() {
     fun updateOrder(){
         order.totalPrice=selectedItems.sumOf { it.price }
         order.totalItems=selectedItems.count()
+        order.date=Date()
     }
 
     fun isOrdered(): Boolean {
