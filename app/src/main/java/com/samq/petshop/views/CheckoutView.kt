@@ -137,6 +137,7 @@ fun CheckBody(modifier: Modifier = Modifier,
                     val order=shopItemViewModel.order
                     if(order.name.isEmpty()||order.cardNumber.isEmpty()){
                         Toast.makeText(context, "Name and Card number are required", Toast.LENGTH_LONG).show()
+                        return@Button
                     }
                     onFinishClick()},
                 enabled = shopItemViewModel.selectedItems.isNotEmpty(),
