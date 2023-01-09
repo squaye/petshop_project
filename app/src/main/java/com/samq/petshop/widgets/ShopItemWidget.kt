@@ -47,6 +47,7 @@ fun ShopItemWidget(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
             ) {
+                Spacer(modifier = Modifier.height(5.dp))
                 Image(
                     painter = rememberAsyncImagePainter(item.imageUrl),
                     contentDescription = null,
@@ -58,23 +59,32 @@ fun ShopItemWidget(
                 Text(
                     text = item.name,
                     //style=MaterialTheme.typography.h3,
-                    modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp).background(Color.Transparent)
+                    modifier = Modifier
+                        .paddingFromBaseline(top = 24.dp, bottom = 8.dp)
+                        .background(Color.Transparent)
                 )
                 Text(
                     text = item.type,
                     style=MaterialTheme.typography.bodySmall,
-                    modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp).background(Color.Transparent)
+                    modifier = Modifier
+                        .paddingFromBaseline(top = 24.dp, bottom = 8.dp)
+                        .background(Color.Transparent)
                 )
                 Text(
                     text = "Ghc ${item.price}",
                     style=MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.paddingFromBaseline(top = 24.dp, bottom = 8.dp).background(Color.Transparent)
+                    modifier = Modifier
+                        .paddingFromBaseline(top = 24.dp, bottom = 8.dp)
+                        .background(Color.Transparent)
                 )
             }
         }
         Button(
             onClick = onClick,
-            modifier= Modifier.width(120.dp).height(40.dp).padding(5.dp),
+            modifier= Modifier
+                .width(120.dp)
+                .height(40.dp)
+                .padding(5.dp),
             colors = ButtonDefaults.buttonColors(containerColor = if(item.selected) Color.Red else Color.Cyan)) {
             Text(if(item.selected) "Remove" else "Buy", color = Color.Black, style = TextStyle(fontSize = TextUnit(
                 12F, TextUnitType.Sp)))
