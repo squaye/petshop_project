@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PetShop</string>
+    <string name="show_less">Show less</string>
+    <string name="show_more">Show more</string>
+    <string name="title_activity_basic">BasicActivity</string>
+    <string name="title_activity_align_body">AlignBodyActivity</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_wellness_task_item">WellnessTaskItem</string>
+</resources>
