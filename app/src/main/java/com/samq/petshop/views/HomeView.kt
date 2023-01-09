@@ -7,6 +7,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.sharp.FavoriteBorder
 import androidx.compose.material.icons.sharp.ShoppingCart
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -20,8 +21,6 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.samq.petshop.MyApp
-import com.samq.petshop.StatefulCounter
 import com.samq.petshop.ui.theme.PetShopTheme
 import com.samq.petshop.widgets.ShopItemGrid
 
@@ -73,6 +72,13 @@ fun TopBar(
                         style = TextStyle(color=Color.White, fontSize = TextUnit(16f, TextUnitType.Sp)))
                 }
             }
+            Spacer(modifier = Modifier.width(5.dp))
+            Icon(
+                imageVector = Icons.Sharp.FavoriteBorder,
+                contentDescription = "Menu",
+                modifier = Modifier.clickable { onCartClick() },
+                tint = Color.White
+            )
         },
         // background color of topAppBar
         colors = TopAppBarDefaults.mediumTopAppBarColors(containerColor = Color(0xFF0F9D58))
@@ -101,6 +107,6 @@ fun Body(modifier: Modifier = Modifier,
 @Composable
 fun DefaultPreview() {
     PetShopTheme {
-        MyApp()
+        HomeView(onClick = {}, onCartClick = { /*TODO*/ })
     }
 }
