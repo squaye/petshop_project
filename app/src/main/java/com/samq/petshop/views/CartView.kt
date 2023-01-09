@@ -116,6 +116,7 @@ fun CartBody(modifier: Modifier = Modifier,
                     }
                 }
             }
+            Spacer(modifier = Modifier.height(50.dp))
             ShopItemCartGrid(
                 list = shopItemViewModel.selectedItems,
                 onClose = onClose,

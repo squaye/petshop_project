@@ -50,7 +50,7 @@ fun ShopItemWidget(
                 Image(
                     painter = rememberAsyncImagePainter(item.imageUrl),
                     contentDescription = null,
-                    contentScale = ContentScale.Crop,
+                    contentScale = ContentScale.FillWidth,
                     modifier = Modifier
                         .height(120.dp)
 

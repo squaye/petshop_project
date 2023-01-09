@@ -5,6 +5,7 @@ import ShopItemViewModel
 import WellnessScreen
 import android.os.Bundle
 import android.widget.Space
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.annotation.DrawableRes
@@ -29,16 +30,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.samq.petshop.ui.theme.PetShopTheme
-import java.util.Locale
 import androidx.compose.material3.*
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.window.Popup
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.samq.petshop.models.Order
 import com.samq.petshop.views.CartView
 import com.samq.petshop.views.CheckoutView
 import com.samq.petshop.views.HomeView
+import com.samq.petshop.views.ThankYouView
+import java.util.*
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -111,6 +116,7 @@ class MainActivity : ComponentActivity() {
                         navController.navigate("thanks")
                     },
                     onBack = {
+                        shopItemViewModel.order.date= Date()
                         navController.navigate("cart"){
                             popUpTo("cart")
                             launchSingleTop = true
@@ -118,7 +124,17 @@ class MainActivity : ComponentActivity() {
                     },
                     shopItemViewModel=shopItemViewModel
                 ) }
-//            composable("thanks") { FriendsListScreen(/*...*/) }
+            composable("thanks") { ThankYouView(
+                modifier=modifier,
+                onBack = {
+                    shopItemViewModel.clear();
+                    navController.navigate("home"){
+                        popUpTo("home")
+                        launchSingleTop = true
+                    }
+                },
+                shopItemViewModel=shopItemViewModel
+            ) }
         }
     }
 
