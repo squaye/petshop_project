@@ -3,7 +3,9 @@ package com.samq.petshop.views
 import ShopItem
 import ShopItemViewModel
 import android.widget.Toast
+import androidx.compose.animation.AnimatedContentScope.SlideDirection.Companion.Down
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
@@ -11,9 +13,12 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection.Companion.Down
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.ImeOptions
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.ExperimentalUnitApi
@@ -21,6 +26,7 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
+import androidx.core.view.ViewCompat.FocusDirection
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.samq.petshop.models.Order
 import com.samq.petshop.widgets.ShopItemCartGrid
@@ -152,6 +158,7 @@ fun CheckBody(modifier: Modifier = Modifier,
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NameField(modifier: Modifier, order: Order){
+    val focusManager = LocalFocusManager.current
     TextField(
         value = order.name,
         onValueChange = {order.name= it},
@@ -161,6 +168,12 @@ fun NameField(modifier: Modifier, order: Order){
         colors = TextFieldDefaults.textFieldColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down)
+            }
+        ),
+        singleLine=true,
         placeholder = {
             Text("full name")
         },
@@ -170,6 +183,7 @@ fun NameField(modifier: Modifier, order: Order){
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EmailField(modifier: Modifier, order: Order){
+    val focusManager = LocalFocusManager.current
     TextField(
         value = order.email,
         onValueChange = {order.email= it},
@@ -179,7 +193,12 @@ fun EmailField(modifier: Modifier, order: Order){
         leadingIcon={ Icon(imageVector = Icons.Default.Email,contentDescription = null) },
         colors = TextFieldDefaults.textFieldColors(
             containerColor = MaterialTheme.colorScheme.surface
+        ),keyboardActions = KeyboardActions(
+            onDone = {
+                focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down)
+            }
         ),
+        singleLine=true,
         placeholder = {
             Text("example@gmail.com")
         },
@@ -189,6 +208,7 @@ fun EmailField(modifier: Modifier, order: Order){
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PhoneField(modifier: Modifier, order: Order){
+    val focusManager = LocalFocusManager.current
     TextField(
         value = order.phone,
         onValueChange = {order.phone= it},
@@ -199,7 +219,13 @@ fun PhoneField(modifier: Modifier, order: Order){
         colors = TextFieldDefaults.textFieldColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+        singleLine=true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down)
+            }
+        ),
         placeholder = {
             Text("233276xxxxxx")
         },
@@ -215,6 +241,7 @@ fun PaymentTypeBox(modifier: Modifier){
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CardNumberField(modifier: Modifier, order: Order){
+    val focusManager = LocalFocusManager.current
     TextField(
         value = order.cardNumber,
         onValueChange = {order.cardNumber= it},
@@ -224,7 +251,13 @@ fun CardNumberField(modifier: Modifier, order: Order){
         colors = TextFieldDefaults.textFieldColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
+        singleLine=true,
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number,),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                focusManager.moveFocus(androidx.compose.ui.focus.FocusDirection.Down)
+            }
+        ),
         placeholder = {
             Text("3899 3339 xxxx xxxx")
         },
