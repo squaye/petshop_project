@@ -137,15 +137,9 @@ fun CheckBody(modifier: Modifier = Modifier,
             Spacer(modifier = Modifier.height(5.dp))
             CardNumberField(modifier = Modifier.padding(5.dp), shopItemViewModel.order)
             Spacer(modifier = Modifier.height(25.dp))
-            val context= LocalContext.current
+
             Button(
-                onClick={
-                    val order=shopItemViewModel.order
-                    if(order.name.isEmpty()||order.cardNumber.isEmpty()){
-                        Toast.makeText(context, "Name and Card number are required", Toast.LENGTH_LONG).show()
-                        return@Button
-                    }
-                    onFinishClick()},
+                onClick=onFinishClick,
                 enabled = shopItemViewModel.selectedItems.isNotEmpty(),
             ){
                 Text(text = "Pay & Complete")
