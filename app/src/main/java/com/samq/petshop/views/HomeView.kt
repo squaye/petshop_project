@@ -65,7 +65,7 @@ fun TopBar(
                 imageVector = Icons.Filled.Email,
                 contentDescription = "Menu",
                 modifier = Modifier.clickable { onOrderClick() },
-                tint = Color.White
+                tint = if(shopItemViewModel.isOrdered())Color.Red else Color.White
             )
             Spacer(modifier = Modifier.width(5.dp))
             Row (
