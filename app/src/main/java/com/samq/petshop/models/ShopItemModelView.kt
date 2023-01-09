@@ -18,6 +18,15 @@ class ShopItemViewModel: ViewModel() {
 
     val selectedItems: List<ShopItem> get() = _items.filter { it.selected }
 
+    fun updateOrder(){
+        order.totalPrice=selectedItems.sumOf { it.price }
+        order.totalItems=selectedItems.count()
+    }
+
+    fun isOrdered(): Boolean {
+        return order.name.isNotEmpty()&&order.cardNumber.isNotEmpty()
+    }
+
     fun remove(item: ShopItem) {
 //        _items.remove(item)
         item.selected=false
@@ -29,12 +38,12 @@ class ShopItemViewModel: ViewModel() {
         }
 
     fun clear(){
-        order.id=0;
-        order.name=""
-        order.cardNumber=""
-        order.email=""
-        order.phone=""
-        order.date= Date()
+//        order.id=0;
+//        order.name=""
+//        order.cardNumber=""
+//        order.email=""
+//        order.phone=""
+//        order.date= Date()
         for(item: ShopItem in items){
             item.selected=false
         }

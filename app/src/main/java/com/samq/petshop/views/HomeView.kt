@@ -6,7 +6,9 @@ import android.annotation.SuppressLint
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.sharp.FavoriteBorder
 import androidx.compose.material.icons.sharp.ShoppingCart
 import androidx.compose.material3.*
@@ -31,11 +33,12 @@ fun HomeView(
     modifier: Modifier = Modifier,
     onClick: (ShopItem) -> Unit,
     onCartClick: () -> Unit,
+    onOrderClick: ()->Unit,
     shopItemViewModel: ShopItemViewModel = viewModel()
 ) {
     Scaffold(
         modifier = modifier,
-        topBar = { TopBar(modifier = Modifier, onCartClick = onCartClick, shopItemViewModel=shopItemViewModel) },
+        topBar = { TopBar(modifier = Modifier, onCartClick = onCartClick, onOrderClick = onOrderClick, shopItemViewModel=shopItemViewModel) },
         content = {padding ->
             Body(modifier = modifier.padding(padding), onClick = onClick, shopItemViewModel=shopItemViewModel)
         },
@@ -49,6 +52,7 @@ fun HomeView(
 fun TopBar(
     modifier: Modifier = Modifier,
     onCartClick: () -> Unit,
+    onOrderClick: ()->Unit,
     shopItemViewModel: ShopItemViewModel = viewModel()
 ){
     TopAppBar(
@@ -57,6 +61,13 @@ fun TopBar(
             Text(text = "Pet Shop", color = Color.White)
         },
         actions= {
+            Icon(
+                imageVector = Icons.Filled.Email,
+                contentDescription = "Menu",
+                modifier = Modifier.clickable { onOrderClick() },
+                tint = Color.White
+            )
+            Spacer(modifier = Modifier.width(5.dp))
             Row (
                 verticalAlignment = Alignment.CenterVertically
                     ){
@@ -72,13 +83,7 @@ fun TopBar(
                         style = TextStyle(color=Color.White, fontSize = TextUnit(16f, TextUnitType.Sp)))
                 }
             }
-            Spacer(modifier = Modifier.width(5.dp))
-            Icon(
-                imageVector = Icons.Sharp.FavoriteBorder,
-                contentDescription = "Menu",
-                modifier = Modifier.clickable { onCartClick() },
-                tint = Color.White
-            )
+
         },
         // background color of topAppBar
         colors = TopAppBarDefaults.mediumTopAppBarColors(containerColor = Color(0xFF0F9D58))
@@ -107,6 +112,6 @@ fun Body(modifier: Modifier = Modifier,
 @Composable
 fun DefaultPreview() {
     PetShopTheme {
-        HomeView(onClick = {}, onCartClick = { /*TODO*/ })
+        HomeView(onClick = {}, onCartClick = { /*TODO*/ }, onOrderClick = {})
     }
 }

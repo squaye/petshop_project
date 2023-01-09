@@ -13,7 +13,7 @@ class Order(
 ){
     var id: Int = 0
     var totalPrice: Double = 0.0
-    var totalItems: Double = 0.0
+    var totalItems: Int = 0
     var name by mutableStateOf(initialName)
     var email by mutableStateOf(initialEmail)
     var phone by mutableStateOf(initialPhone)

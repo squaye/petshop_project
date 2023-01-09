@@ -18,10 +18,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.samq.petshop.views.CartView
-import com.samq.petshop.views.CheckoutView
-import com.samq.petshop.views.HomeView
-import com.samq.petshop.views.ThankYouView
+import com.samq.petshop.views.*
 import java.util.*
 
 class MainActivity : ComponentActivity() {
@@ -66,6 +63,21 @@ class MainActivity : ComponentActivity() {
                     onCartClick= {
                         navController.navigate("cart")
                     },
+                    onOrderClick={
+                        navController.navigate("order")
+                    },
+                    shopItemViewModel=shopItemViewModel
+                )
+            }
+            composable("order") {
+                OrderView(
+                    modifier=modifier,
+                    onBack = {
+                        navController.navigate("home"){
+                            popUpTo("home")
+                            launchSingleTop = true
+                        }
+                    },
                     shopItemViewModel=shopItemViewModel
                 )
             }
@@ -98,6 +110,7 @@ class MainActivity : ComponentActivity() {
                             Toast.makeText(context, "Name and Card number are required", Toast.LENGTH_LONG).show()
                             return@CheckoutView
                         }
+                        shopItemViewModel.updateOrder()
                         navController.navigate("thanks")
                     },
                     onBack = {
