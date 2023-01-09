@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import com.samq.petshop.ui.theme.PetShopTheme
 import androidx.compose.material3.*
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -137,4 +138,12 @@ class MainActivity : ComponentActivity() {
     }
 
 
+    @Preview(showBackground = true, widthDp = 320)
+    @Composable
+    fun DefaultPreview() {
+        PetShopTheme {
+            MyAppNavHost()
+        }
+    }
 }
+
