@@ -63,7 +63,9 @@ fun ThankTopBar(
                 Icon(
                     imageVector = Icons.Sharp.Close,
                     contentDescription = "Close",
-                    modifier = Modifier.clickable { onBack() }.background(Color.White),
+                    modifier = Modifier
+                        .clickable { onBack() }
+                        .background(Color.White),
                 )
             }
         },
@@ -113,8 +115,12 @@ fun ThankBody(modifier: Modifier = Modifier,
         NameText(modifier = Modifier, shopItemViewModel.order)
         EmailText(modifier = Modifier, shopItemViewModel.order)
         PhoneText(modifier = Modifier, shopItemViewModel.order)
-        Spacer(modifier = Modifier.height(10.dp).fillMaxWidth().background(Color.White))
+        Spacer(modifier = Modifier
+            .height(10.dp)
+            .fillMaxWidth()
+            .background(Color.White))
         DateText(modifier = Modifier, shopItemViewModel.order)
+        StatusText(modifier = Modifier, shopItemViewModel.order )
         Spacer(modifier = Modifier.height(25.dp))
         Button(
             onClick=onBack,
@@ -129,7 +135,10 @@ fun ThankBody(modifier: Modifier = Modifier,
 @Composable
 fun NameText(modifier: Modifier, order: Order){
     Row (
-        modifier = modifier.fillMaxWidth().height(40.dp).background(Color.White)
+        modifier = modifier
+            .fillMaxWidth()
+            .height(40.dp)
+            .background(Color.White)
             ){
         Text(text = "Name: ")
         Text(text = order.name)
@@ -140,7 +149,10 @@ fun NameText(modifier: Modifier, order: Order){
 @Composable
 fun EmailText(modifier: Modifier, order: Order){
     Row (
-        modifier = modifier.fillMaxWidth().height(40.dp).background(Color.White)
+        modifier = modifier
+            .fillMaxWidth()
+            .height(40.dp)
+            .background(Color.White)
     ){
         Text(text = "Email: ")
         Text(text = order.email)
@@ -151,7 +163,10 @@ fun EmailText(modifier: Modifier, order: Order){
 @Composable
 fun PhoneText(modifier: Modifier, order: Order){
     Row (
-        modifier = modifier.fillMaxWidth().height(40.dp).background(Color.White)
+        modifier = modifier
+            .fillMaxWidth()
+            .height(40.dp)
+            .background(Color.White)
     ){
         Text(text = "Phone: ")
         Text(text = order.phone)
@@ -162,9 +177,26 @@ fun PhoneText(modifier: Modifier, order: Order){
 @Composable
 fun DateText(modifier: Modifier, order: Order){
     Row (
-        modifier = modifier.fillMaxWidth().height(40.dp).background(Color.White)
+        modifier = modifier
+            .fillMaxWidth()
+            .height(40.dp)
+            .background(Color.White)
     ){
         Text(text = "Date: ")
         Text(text = order.date.toString())
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun StatusText(modifier: Modifier, order: Order){
+    Row (
+        modifier = modifier
+            .fillMaxWidth()
+            .height(40.dp)
+            .background(Color.White)
+    ){
+        Text(text = "Status: ")
+        Text(text = order.status)
     }
 }

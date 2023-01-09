@@ -19,4 +19,5 @@ class Order(
     var phone by mutableStateOf(initialPhone)
     var cardNumber by mutableStateOf(initialCardNumber)
     var date: Date = Date()
+    var status: String ="Pending"
 }
