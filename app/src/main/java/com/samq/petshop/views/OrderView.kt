@@ -88,15 +88,15 @@ fun OrderBody(modifier: Modifier = Modifier,
                         verticalArrangement = Arrangement.Top,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = "No of Orders", fontSize = TextUnit(22f, TextUnitType.Sp))
-                        Text(text = "${if(shopItemViewModel.isOrdered()) 1 else 0}", fontSize = TextUnit(44f, TextUnitType.Sp))
+                        Text(text = "No of Orders", fontSize = TextUnit(18f, TextUnitType.Sp))
+                        Text(text = "${if(shopItemViewModel.isOrdered()) 1 else 0}", fontSize = TextUnit(34f, TextUnitType.Sp))
                     }
                     Column(
                         verticalArrangement = Arrangement.Top,
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
-                        Text(text = "Total Orderd Price", fontSize = TextUnit(22f, TextUnitType.Sp))
-                        Text(text = "${if(shopItemViewModel.isOrdered())shopItemViewModel.order.totalPrice else 0}", fontSize = TextUnit(44f, TextUnitType.Sp))
+                        Text(text = "Total Orderd Price", fontSize = TextUnit(18f, TextUnitType.Sp))
+                        Text(text = "${if(shopItemViewModel.isOrdered())shopItemViewModel.order.totalPrice else 0}", fontSize = TextUnit(34f, TextUnitType.Sp))
                     }
                 }
             }
